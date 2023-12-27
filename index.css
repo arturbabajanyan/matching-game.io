@@ -1,0 +1,34 @@
+body {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .card-container { /* blue container */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    border: 3px solid blue;
+  }
+  
+  .container { /* red container */
+  /*   margin: 50; */
+    display: flex;
+    border: 3px solid red;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card { /* green container */
+    border: 3px solid green;
+    border-radius: 20px;
+    width: 150px;
+    height: 200px;
+    margin: 20px;
+  }
+  
+  @media (max-width: 900px) {
+      .card-container { /* blue container */
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border: 3px solid purple;
+    }
+  }
