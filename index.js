@@ -29,10 +29,11 @@ document.querySelectorAll("div.card").forEach((item, index) => {
         if (regex.test(e.target.src)) {
             e.target.src = `./img/card-pictures/${shuffledCards[index]}.png`;
             storedTwoCards.push(index, shuffledCards[index]);
+
+            console.log(storedTwoCards);
+
             if (storedTwoCards.length === 4) {
-                // checkAnswers();
                 timer = setTimeout(checkAnswers, 700);
-                console.log(timer);
             }
         } else {
             e.target.src = `./img/card-pictures/card-back.png`;
@@ -59,6 +60,10 @@ function checkAnswers() {
         document.querySelectorAll('img')[storedTwoCards[0]].src = `./img/card-pictures/card-back.png`;
         document.querySelectorAll('img')[storedTwoCards[2]].src = `./img/card-pictures/card-back.png`;
     }
-    storedTwoCards = [];
+    for (let i = 0; i < 4; i++) {
+        storedTwoCards.shift();
+    }
+    console.log(storedTwoCards);
+    // storedTwoCards = [];
     // console.log('Done');
 }
