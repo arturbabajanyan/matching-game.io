@@ -6,6 +6,7 @@ let storedTwoCards = [];
 
 let index = 0;
 let stopLoop = 20;
+let timer;
 
 
 const cards = ["AH", 'KD', "QS", "AC", "KH", "QC", "AH", 'KD', "QS", "AC", "KH", "QC"];
@@ -24,28 +25,37 @@ while (cards.length > 0 && stopLoop > 0) {
 
 document.querySelectorAll("div.card").forEach((item, index) => {
     item.addEventListener('click', e => {
+
         if (regex.test(e.target.src)) {
             e.target.src = `./img/card-pictures/${shuffledCards[index]}.png`;
             storedTwoCards.push(index, shuffledCards[index]);
             if (storedTwoCards.length === 4) {
-                setTimeout(checkAnswers, 700);
+                // checkAnswers();
+                timer = setTimeout(checkAnswers, 700);
+                console.log(timer);
             }
         } else {
             e.target.src = `./img/card-pictures/card-back.png`;
+            if(storedTwoCards.length === 4) {
+                clearTimeout(timer);
+                if (storedTwoCards[1] == storedTwoCards[3]) {
+                    checkAnswers();
+                } else {
+                    for (let i = 0; i < document.querySelectorAll('img').length; i++) {
+                        document.querySelectorAll('img')[i].src = `./img/card-pictures/card-back.png`;
+                    }
+                }
+            }
             storedTwoCards = [];
         }
     })
 })
 
 function checkAnswers() {
-    // console.log(document.querySelectorAll('img')[storedTwoCards[0]]);
-    // console.log(document.querySelectorAll('img')[storedTwoCards[2]]);
     if (storedTwoCards[1] == storedTwoCards[3]) {
-        // console.log('You got it');
-        document.querySelectorAll('img')[storedTwoCards[0]].style.display='none';
-        document.querySelectorAll('img')[storedTwoCards[2]].style.display='none';
+        document.querySelectorAll('img')[storedTwoCards[0]].style.display = 'none';
+        document.querySelectorAll('img')[storedTwoCards[2]].style.display = 'none';
     } else {
-        // console.log('Wrong answer');
         document.querySelectorAll('img')[storedTwoCards[0]].src = `./img/card-pictures/card-back.png`;
         document.querySelectorAll('img')[storedTwoCards[2]].src = `./img/card-pictures/card-back.png`;
     }
