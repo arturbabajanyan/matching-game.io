@@ -38,17 +38,17 @@ document.querySelectorAll("div.card").forEach((item, index) => {
 })
 
 function checkAnswers() {
-    console.log(document.querySelectorAll('img')[storedTwoCards[0]]);
-    console.log(document.querySelectorAll('img')[storedTwoCards[2]]);
+    // console.log(document.querySelectorAll('img')[storedTwoCards[0]]);
+    // console.log(document.querySelectorAll('img')[storedTwoCards[2]]);
     if (storedTwoCards[1] == storedTwoCards[3]) {
-        console.log('You got it');
+        // console.log('You got it');
         document.querySelectorAll('img')[storedTwoCards[0]].style.display='none';
         document.querySelectorAll('img')[storedTwoCards[2]].style.display='none';
     } else {
-        console.log('Wrong answer');
+        // console.log('Wrong answer');
         document.querySelectorAll('img')[storedTwoCards[0]].src = `./img/card-pictures/card-back.png`;
         document.querySelectorAll('img')[storedTwoCards[2]].src = `./img/card-pictures/card-back.png`;
     }
     storedTwoCards = [];
-    console.log('Done');
+    // console.log('Done');
 }
