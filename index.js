@@ -7,6 +7,7 @@ let storedTwoCards = [];
 let index = 0;
 let stopLoop = 20;
 let timer;
+let blankCard = `./img/card-pictures/card-back.png`;
 
 
 const cards = ["AH", 'KD', "QS", "AC", "KH", "QC", "AH", 'KD', "QS", "AC", "KH", "QC"];
@@ -33,17 +34,25 @@ document.querySelectorAll("div.card").forEach((item, index) => {
             console.log(storedTwoCards);
 
             if (storedTwoCards.length === 4) {
+                document.querySelector('.card-container').style.zIndex = '-2';
                 timer = setTimeout(checkAnswers, 700);
+            } else if (storedTwoCards.length > 6) {
+                clearTimeout(timer);
+                for (let i = 0; i < document.querySelectorAll('img').length; i++) {
+                    document.querySelectorAll('img')[i].src = blankCard;
+                }
+                storedTwoCards = [];
             }
+
         } else {
-            e.target.src = `./img/card-pictures/card-back.png`;
+            e.target.src = blankCard;
             if(storedTwoCards.length === 4) {
                 clearTimeout(timer);
                 if (storedTwoCards[1] == storedTwoCards[3]) {
                     checkAnswers();
                 } else {
                     for (let i = 0; i < document.querySelectorAll('img').length; i++) {
-                        document.querySelectorAll('img')[i].src = `./img/card-pictures/card-back.png`;
+                        document.querySelectorAll('img')[i].src = blankCard;
                     }
                 }
             }
@@ -53,17 +62,19 @@ document.querySelectorAll("div.card").forEach((item, index) => {
 })
 
 function checkAnswers() {
+    document.querySelector('.card-container').style.zIndex = '2';
     if (storedTwoCards[1] == storedTwoCards[3]) {
         document.querySelectorAll('img')[storedTwoCards[0]].style.display = 'none';
         document.querySelectorAll('img')[storedTwoCards[2]].style.display = 'none';
     } else {
-        document.querySelectorAll('img')[storedTwoCards[0]].src = `./img/card-pictures/card-back.png`;
-        document.querySelectorAll('img')[storedTwoCards[2]].src = `./img/card-pictures/card-back.png`;
+        document.querySelectorAll('img')[storedTwoCards[0]].src = blankCard;
+        document.querySelectorAll('img')[storedTwoCards[2]].src = blankCard;
     }
+
     for (let i = 0; i < 4; i++) {
         storedTwoCards.shift();
     }
-    console.log(storedTwoCards);
     // storedTwoCards = [];
+    // console.log(storedTwoCards);
     // console.log('Done');
 }

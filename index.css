@@ -36,23 +36,25 @@ button {
 .card-container { /* blue container */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  /* border: 3px solid blue; */
+  border: 3px solid blue;
+  z-index: 2;
 }
 
 .container { /* red container */
 /*   margin: 50; */
   display: flex;
-  /* border: 3px solid red; */
+  border: 3px solid red;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .card { /* green container */
-  /* border: 3px solid green; */
+  border: 3px solid green;
   border-radius: 10px;
   width: 150px;
   height: 200px;
   margin: 20px;
+  z-index: -1;
 }
 
 @media (max-width: 900px) {
