@@ -31,23 +31,22 @@ document.querySelectorAll("div.card").forEach((item, index) => {
             e.target.src = `./img/card-pictures/${shuffledCards[index]}.png`;
             storedTwoCards.push(index, shuffledCards[index]);
 
-            console.log(storedTwoCards);
+            // console.log(storedTwoCards);
+
+            if (storedTwoCards.length == 8) {
+                // console.log('you are here');
+                document.querySelector('.card-container').style.zIndex = '-2'; // z index
+            }
 
             if (storedTwoCards.length === 4) {
-                document.querySelector('.card-container').style.zIndex = '-2';
-                timer = setTimeout(checkAnswers, 700);
-            } else if (storedTwoCards.length > 6) {
-                clearTimeout(timer);
-                for (let i = 0; i < document.querySelectorAll('img').length; i++) {
-                    document.querySelectorAll('img')[i].src = blankCard;
-                }
-                storedTwoCards = [];
+                timer = setTimeout(checkAnswers, 2000);
             }
 
         } else {
             e.target.src = blankCard;
             if(storedTwoCards.length === 4) {
                 clearTimeout(timer);
+                // checkAnswers();
                 if (storedTwoCards[1] == storedTwoCards[3]) {
                     checkAnswers();
                 } else {
@@ -56,13 +55,18 @@ document.querySelectorAll("div.card").forEach((item, index) => {
                     }
                 }
             }
-            storedTwoCards = [];
+            console.log(storedTwoCards);
+            if (storedTwoCards.length == 6) {
+                storedTwoCards.pop(storedTwoCards.length-1);
+                storedTwoCards.pop(storedTwoCards.length-1);
+            } else {
+                storedTwoCards = [];
+            }
         }
     })
 })
 
 function checkAnswers() {
-    document.querySelector('.card-container').style.zIndex = '2';
     if (storedTwoCards[1] == storedTwoCards[3]) {
         document.querySelectorAll('img')[storedTwoCards[0]].style.display = 'none';
         document.querySelectorAll('img')[storedTwoCards[2]].style.display = 'none';
@@ -75,6 +79,11 @@ function checkAnswers() {
         storedTwoCards.shift();
     }
     // storedTwoCards = [];
+    document.querySelector('.card-container').style.zIndex = '2'; // z index
     // console.log(storedTwoCards);
-    // console.log('Done');
+
+    if (storedTwoCards.length === 4) {
+        timer = setTimeout(checkAnswers, 2000);
+
+    }
 }
