@@ -3,6 +3,7 @@ function reloadThePage() {
 }
 const regex = new RegExp('card-back');
 let storedTwoCards = [];
+const tiemBeforeCheck = 700
 
 let index = 0;
 let stopLoop = 20;
@@ -39,7 +40,7 @@ document.querySelectorAll("div.card").forEach((item, index) => {
             }
 
             if (storedTwoCards.length === 4) {
-                timer = setTimeout(checkAnswers, 2000);
+                timer = setTimeout(checkAnswers, tiemBeforeCheck);
             }
 
         } else {
@@ -83,7 +84,7 @@ function checkAnswers() {
     // console.log(storedTwoCards);
 
     if (storedTwoCards.length === 4) {
-        timer = setTimeout(checkAnswers, 2000);
+        timer = setTimeout(checkAnswers, tiemBeforeCheck);
 
     }
 }
