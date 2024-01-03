@@ -57,7 +57,7 @@ button {
   z-index: -1;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 400px) and (max-width: 900px) {
     .card-container { /* blue container */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -77,17 +77,25 @@ button {
     text-shadow: 0 0 6px #dccbc9;
     font-size: 2.5rem;
   }
+}
 
-  button {
-    margin-top: 30px;
-    background-color: #f44336; /* Green */
-    border: none;
-    border-radius: 10px;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+@media (max-width: 400px) {
+    .card-container { /* blue container */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* border: 3px solid purple; */
+  }
+
+  .card {
+    width: 75px;
+    height: 100px;
+    margin: 8px;
+  }
+
+  h1 {
+    margin: 15px auto;
+    color: #0F0C4C;
+    text-shadow: 0 0 6px #dccbc9;
+    font-size: 1.5rem;
   }
 }
