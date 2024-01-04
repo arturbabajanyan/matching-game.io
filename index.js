@@ -3,7 +3,7 @@ function reloadThePage() {
 }
 const regex = new RegExp('card-back');
 let storedTwoCards = [];
-const tiemBeforeCheck = 700
+const tiemBeforeCheck = 700;
 
 let index = 0;
 let stopLoop = 20;
@@ -11,7 +11,9 @@ let timer;
 let blankCard = `./img/card-pictures/card-back.png`;
 
 
-const cards = ["AH", 'KD', "QS", "AC", "KH", "QC", "AH", 'KD', "QS", "AC", "KH", "QC"];
+// const cards = ["AH", 'KD', "QS", "AC", "KH", "QC", "AH", 'KD', "QS", "AC", "KH", "QC"];
+
+const cards = randomSixCards.concat(randomSixCards);
 const shuffledCards = [];
 let cardLength = cards.length;
 
@@ -32,10 +34,8 @@ document.querySelectorAll("div.card").forEach((item, index) => {
             e.target.src = `./img/card-pictures/${shuffledCards[index]}.png`;
             storedTwoCards.push(index, shuffledCards[index]);
 
-            // console.log(storedTwoCards);
-
             if (storedTwoCards.length == 8) {
-                // console.log('you are here');
+                
                 document.querySelector('.card-container').style.zIndex = '-2'; // z index
             }
 
@@ -47,7 +47,7 @@ document.querySelectorAll("div.card").forEach((item, index) => {
             e.target.src = blankCard;
             if(storedTwoCards.length === 4) {
                 clearTimeout(timer);
-                // checkAnswers();
+                
                 if (storedTwoCards[1] == storedTwoCards[3]) {
                     checkAnswers();
                 } else {
@@ -56,7 +56,7 @@ document.querySelectorAll("div.card").forEach((item, index) => {
                     }
                 }
             }
-            console.log(storedTwoCards);
+            
             if (storedTwoCards.length == 6) {
                 storedTwoCards.pop(storedTwoCards.length-1);
                 storedTwoCards.pop(storedTwoCards.length-1);
@@ -79,9 +79,8 @@ function checkAnswers() {
     for (let i = 0; i < 4; i++) {
         storedTwoCards.shift();
     }
-    // storedTwoCards = [];
-    document.querySelector('.card-container').style.zIndex = '2'; // z index
-    // console.log(storedTwoCards);
+    
+    document.querySelector('.card-container').style.zIndex = '2';
 
     if (storedTwoCards.length === 4) {
         timer = setTimeout(checkAnswers, tiemBeforeCheck);
